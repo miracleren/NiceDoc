@@ -3,6 +3,7 @@ package com.miracleren;
 import com.sun.org.apache.xpath.internal.objects.XObject;
 import org.apache.poi.xwpf.usermodel.*;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTRow;
 
 import java.io.*;
 import java.util.HashMap;
@@ -107,7 +108,7 @@ public class NiceDoc {
         for (XWPFTable table : tables) {
             boolean isFind = false;
             XWPFTableRow baseRow = null;
-            XWPFTableRow newRow = null;
+
             List<XWPFTableRow> rows = table.getRows();
             int rowCount = rows.size();
             for (int i = 0; i < rowCount; i++) {
@@ -139,14 +140,17 @@ public class NiceDoc {
 
                 //已知数据行，开始填充数据
                 if (baseRow != null) {
-                    newRow = table.insertNewTableRow(rowCount + 1);
+                    int addRowIndex = 1;
+                    for (Map<String, Object> listRow : list) {
+                        CTRow ctRow = table.getCTTbl().insertNewTr(i + addRowIndex);
+                        XWPFTableRow newRow = new XWPFTableRow(ctRow, table);
+                        copyRowAndPushLabels(newRow, baseRow, listRow);
+                        //table.addRow(newRow, i + addRowIndex);
+                        addRowIndex++;
+                    }
 
-                    copyRowAndPushLabels(newRow, baseRow, new HashMap<>());
-//                    List<XWPFTableCell> baseCells = baseRow.getTableCells();
-//                    for (int j = 0; j < baseCells.size(); j++) {
-//                        newRow.createCell();
-//                        newRow.getCell(j).setText("wqi vb ");
-//                    }
+                    baseRow = null;
+                    table.removeRow(i);
                 }
             }
             //删除table标识行
@@ -167,17 +171,31 @@ public class NiceDoc {
         for (XWPFTableCell cell : baseRow.getTableCells()) {
             XWPFTableCell newCell = newRow.addNewTableCell();
             newCell.getCTTc().setTcPr(cell.getCTTc().getTcPr());
+            boolean isFirst = true;
+            //newCell.setParagraph(cell.getParagraphs().get(0));
             for (XWPFParagraph paragraph : cell.getParagraphs()) {
-                XWPFParagraph newParagraph = newCell.addParagraph();
+                XWPFParagraph newParagraph = isFirst ? newCell.getParagraphs().get(0) : newCell.addParagraph();
+                isFirst = false;
                 newParagraph.getCTP().setPPr(paragraph.getCTP().getPPr());
                 for (XWPFRun run : paragraph.getRuns()) {
-                    if (run != null) {
-                        XWPFRun newRun = paragraph.createRun();
-                        newRun.getCTR().setRPr(run.getCTR().getRPr());
-                    }
+                    XWPFRun newRun = newParagraph.createRun();
+                    newRun.getCTR().setRPr(run.getCTR().getRPr());
 
+                    String text = run.getText(0);
+                    if (text == null)
+                        continue;
+
+                    Matcher labels = NiceUtils.getMatchingLabels(text);
+                    while (labels.find()) {
+                        String label = labels.group();
+                        String[] key = label.split(":");
+                        if (params.containsKey(key[key.length - 1])) {
+                            newRun.setText(text.replace(NiceUtils.labelFormat(label), params.get(key[key.length - 1]).toString()), 0);
+                        }
+                    }
                 }
             }
+
         }
     }
 
@@ -220,8 +238,10 @@ public class NiceDoc {
                     labelFindCount++;
                     String label = labels.group();
                     //普通文本标签
-                    if (!label.contains(":") && params.containsKey(label.trim())) {
-                        run.setText(nowText.replace(NiceUtils.labelFormat(label), params.get(label.trim()).toString()), 0);
+                    String[] key = label.split(":");
+                    if (params.containsKey(key[key.length - 1])) {
+                        if (key.length != 0 && label.startsWith("col:"))
+                            run.setText(nowText.replace(NiceUtils.labelFormat(label), params.get(key[key.length - 1]).toString()), 0);
                     }
                 }
 

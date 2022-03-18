@@ -3,6 +3,7 @@ package com.miracleren;
 import org.apache.poi.hpsf.GUID;
 import org.apache.poi.ss.usermodel.DateUtil;
 
+import java.net.URLDecoder;
 import java.util.*;
 
 /**
@@ -22,9 +23,14 @@ public class Main {
 
 
         //测试模板示例
-        //String path = Main.class.getResource("/").getPath() + "Template/test.docx";
-        String path = "C:/Users/Administrator/Desktop/test.docx";
-        NiceDoc docx = new NiceDoc(path);
+        String path = Main.class.getClassLoader().getResource("Template").getPath() + "/";
+        try {
+            path = URLDecoder.decode(path, "UTF-8");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //String path = "C:/Users/Administrator/Desktop/test.docx";
+        NiceDoc docx = new NiceDoc(path + "test.docx");
 
         Map<String, Object> labels = new HashMap<>();
         labels.put("startTime", "1881年9月25日");
@@ -45,6 +51,6 @@ public class Main {
         docx.pushTable("books", books);
 
 
-        docx.save("C:/Users/Administrator/Desktop/tmp/", UUID.randomUUID() + ".docx");
+        docx.save(path, UUID.randomUUID() + ".docx");
     }
 }
