@@ -5,10 +5,8 @@
 ## word模板
 resources/Template/test.docx 示例模板
 目前只支持docx格式的word模板导出，模板格式如下：
-![Image text](images/test.png)
+![Image text](images/tem.png)
 ## 示例代码
-`
-
         //打开模板
         String path = URLDecoder.decode(Main.class.getClassLoader().getResource("Template").getPath(), "UTF-8"); + "/";
         NiceDoc docx = new NiceDoc(path + "test.docx");
@@ -35,7 +33,6 @@ resources/Template/test.docx 示例模板
 
         //生成文档
         docx.save(path, UUID.randomUUID() + ".docx");
-`
 ## 生成文档
 ![Image text](images/res.png)
 # NiceDoc 目前支持相关标签说明
