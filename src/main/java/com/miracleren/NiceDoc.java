@@ -231,7 +231,7 @@ public class NiceDoc {
             if (run.getText(0) != null && (run.getText(0).contains("{{") || runCount > 0)) {
                 nowText += run.getText(0);
                 runCount++;
-                System.out.println(nowText);
+                //System.out.println(nowText);
                 Matcher labels = NiceUtils.getMatchingLabels(nowText);
                 int labelFindCount = 0;
                 while (labels.find()) {
@@ -240,7 +240,7 @@ public class NiceDoc {
                     //普通文本标签
                     String[] key = label.split(":");
                     if (params.containsKey(key[key.length - 1])) {
-                        if (key.length != 0 && label.startsWith("col:"))
+                        if (key.length == 1)
                             run.setText(nowText.replace(NiceUtils.labelFormat(label), params.get(key[key.length - 1]).toString()), 0);
                     }
                 }
