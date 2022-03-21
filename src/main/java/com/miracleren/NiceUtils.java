@@ -1,7 +1,9 @@
 package com.miracleren;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -59,7 +61,22 @@ public class NiceUtils {
     }
 
     /**
+     * 实体类列表转map列表
+     *
+     * @param entityList
+     * @return
+     */
+    public static List<Map<String, Object>> listEntityToMap(List<Object> entityList) {
+        List<Map<String, Object>> list = new ArrayList<>();
+        for (Object entity : entityList) {
+            list.add(entityToMap(entity));
+        }
+        return list;
+    }
+
+    /**
      * 转sting方法
+     *
      * @param object
      * @return
      */

@@ -96,6 +96,7 @@ public class NiceDoc {
         pushLabels(NiceUtils.entityToMap(entity));
     }
 
+
     /**
      * 填充表格内容到文档
      * {{tableName:colName}}
