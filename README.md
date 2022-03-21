@@ -5,7 +5,7 @@
 ## word模板
 resources/Template/test.docx 示例模板
 目前只支持docx格式的word模板导出，模板格式如下：
-![Image text](images/res.png)
+![Image text](images/test.png)
 ## 示例代码
 `
 
