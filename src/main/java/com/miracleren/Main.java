@@ -22,28 +22,31 @@ public class Main {
         System.out.println("|_| \\_|_|\\___\\___|_____/ \\___/ \\___|");
 
 
-        //测试模板示例
+        //测试示例模板
         String path = Main.class.getClassLoader().getResource("Template").getPath() + "/";
         try {
             path = URLDecoder.decode(path, "UTF-8");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //String path = "C:/Users/Administrator/Desktop/test.docx";
         NiceDoc docx = new NiceDoc(path + "test.docx");
 
         Map<String, Object> labels = new HashMap<>();
+        //值标签
         labels.put("startTime", "1881年9月25日");
         labels.put("endTime", "1936年10月19日");
         labels.put("title", "精选作品目录");
         labels.put("press", "鲁迅同学出版社");
 
-        //枚举
+        //枚举标签
         labels.put("likeBook", 2);
+
+        //布尔标签
         labels.put("isQ", true);
         labels.put("isNew", false);
         docx.pushLabels(labels);
 
+        //表格
         List<Map<String, Object>> books = new ArrayList<>();
         Map<String, Object> book1 = new HashMap<>();
         book1.put("name", "汉文学史纲要");
@@ -55,7 +58,7 @@ public class Main {
         books.add(book2);
         docx.pushTable("books", books);
 
-
+        //生成文档
         docx.save(path, UUID.randomUUID() + ".docx");
     }
 }

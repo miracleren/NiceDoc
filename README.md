@@ -7,19 +7,31 @@ resources/Template/test.docx 示例模板
 目前只支持docx格式的word模板导出，模板格式如下：
 ![Image text](images/tem.png)
 ## 示例代码
-        //打开模板
-        String path = URLDecoder.decode(Main.class.getClassLoader().getResource("Template").getPath(), "UTF-8"); + "/";
+        //测试示例模板
+        String path = Main.class.getClassLoader().getResource("Template").getPath() + "/";
+        try {
+            path = URLDecoder.decode(path, "UTF-8");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         NiceDoc docx = new NiceDoc(path + "test.docx");
-        
-        //标签填充
+
         Map<String, Object> labels = new HashMap<>();
+        //值标签
         labels.put("startTime", "1881年9月25日");
         labels.put("endTime", "1936年10月19日");
         labels.put("title", "精选作品目录");
         labels.put("press", "鲁迅同学出版社");
+
+        //枚举标签
+        labels.put("likeBook", 2);
+
+        //布尔标签
+        labels.put("isQ", true);
+        labels.put("isNew", false);
         docx.pushLabels(labels);
 
-        //表格填充
+        //表格
         List<Map<String, Object>> books = new ArrayList<>();
         Map<String, Object> book1 = new HashMap<>();
         book1.put("name", "汉文学史纲要");
