@@ -6,6 +6,7 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTRow;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -217,6 +218,18 @@ public class NiceDoc {
     }
 
     /**
+     * 清空标签被分割的其它文本
+     *
+     * @param runs
+     */
+    private void removeRun(List<XWPFRun> runs) {
+        runs.remove(runs.size() - 1);
+        for (XWPFRun run : runs) {
+            run.setText("", 0);
+        }
+    }
+
+    /**
      * 段落填充标签
      *
      * @param paragraph
@@ -227,28 +240,58 @@ public class NiceDoc {
         List<XWPFRun> runs = paragraph.getRuns();
         String nowText = "";
         int runCount = 0;
+        List<XWPFRun> labelRuns = new ArrayList<>();
         for (XWPFRun run : runs) {
             //防止文本对象标签被分割
             if (run.getText(0) != null && (run.getText(0).contains("{{") || runCount > 0)) {
                 nowText += run.getText(0);
                 runCount++;
+                labelRuns.add(run);
+
                 //System.out.println(nowText);
                 Matcher labels = NiceUtils.getMatchingLabels(nowText);
                 int labelFindCount = 0;
                 while (labels.find()) {
                     labelFindCount++;
                     String label = labels.group();
-                    //普通文本标签
-                    String[] key = label.split(":");
-                    if (params.containsKey(key[key.length - 1])) {
-                        if (key.length == 1)
-                            run.setText(nowText.replace(NiceUtils.labelFormat(label), params.get(key[key.length - 1]).toString()), 0);
+
+                    String[] key = label.split("#");
+                    //标签书签
+                    if (params.containsKey(key[0])) {
+                        //普通文本标签
+                        if (key.length == 1) {
+                            run.setText(nowText.replace(NiceUtils.labelFormat(label), params.get(key[0]).toString()), 0);
+                            break;
+                        }
+
+                        if (key.length == 2) {
+                            //枚举数组标签
+                            if (key[1].startsWith("[") && key[1].endsWith("]")) {
+                                String group = key[1].substring(1, key[1].length() - 1);
+                                for (String keyVal : group.split(",")) {
+                                    if (keyVal.indexOf(params.get(key[0]) + ":") == 0) {
+                                        run.setText(nowText.replace(NiceUtils.labelFormat(label), keyVal.replace(params.get(key[0]) + ":", "")), 0);
+                                        removeRun(labelRuns);
+                                    }
+                                }
+                                break;
+                            }
+
+                            //bool类型标签
+                            String[] bool = key[1].split(":");
+                            if (bool.length == 2) {
+                                run.setText(nowText.replace(NiceUtils.labelFormat(label), params.get(key[0]).toString().equals("true") ? bool[0] : bool[1]), 0);
+                                removeRun(labelRuns);
+                                break;
+                            }
+                        }
                     }
                 }
 
                 if (labelFindCount > 0) {
                     nowText = "";
                     runCount = 0;
+                    labelRuns = new ArrayList<>();
                 }
             }
 

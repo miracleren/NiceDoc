@@ -37,6 +37,11 @@ public class Main {
         labels.put("endTime", "1936年10月19日");
         labels.put("title", "精选作品目录");
         labels.put("press", "鲁迅同学出版社");
+
+        //枚举
+        labels.put("likeBook", 2);
+        labels.put("isQ", true);
+        labels.put("isNew", false);
         docx.pushLabels(labels);
 
         List<Map<String, Object>> books = new ArrayList<>();
