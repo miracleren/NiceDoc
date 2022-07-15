@@ -120,7 +120,7 @@ public class NiceDoc {
                     for (XWPFParagraph cellParagraph : cellParagraphs) {
                         //查找表格标识名称
                         if (!isFind) {
-                            if (cellParagraph.getText().contains(NiceUtils.labelFormat("table:" + tableName))) {
+                            if (cellParagraph.getText().contains(NiceUtils.labelFormat("table#" + tableName))) {
                                 isFind = true;
                             } else {
                                 isFind = false;
@@ -129,7 +129,7 @@ public class NiceDoc {
                         }
 
                         //记录开始数据行
-                        if (cellParagraph.getText().contains("{{col:")) {
+                        if (cellParagraph.getText().contains("{{col#")) {
                             baseRow = rows.get(i);
                             break;
                         }
@@ -241,6 +241,8 @@ public class NiceDoc {
         String nowText = "";
         int runCount = 0;
         List<XWPFRun> labelRuns = new ArrayList<>();
+
+        //常规标签
         for (XWPFRun run : runs) {
             //防止文本对象标签被分割
             if (run.getText(0) != null && (run.getText(0).contains("{{") || runCount > 0)) {
@@ -284,6 +286,7 @@ public class NiceDoc {
                                 removeRun(labelRuns);
                                 break;
                             }
+
                         }
                     }
                 }
@@ -296,6 +299,15 @@ public class NiceDoc {
             }
 
         }
+    }
+
+    /**
+     * 段落条件标签处理
+     * @param paragraph
+     * @param params
+     */
+    private void syntaxLabelsInParagraph(XWPFParagraph paragraph, Map<String, Object> params) {
+
     }
 
 
