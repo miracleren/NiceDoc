@@ -1,6 +1,7 @@
 package com.miracleren;
 
 import com.sun.org.apache.xpath.internal.objects.XObject;
+import org.apache.poi.poifs.crypt.HashAlgorithm;
 import org.apache.poi.xwpf.usermodel.*;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTRow;
@@ -303,6 +304,7 @@ public class NiceDoc {
 
     /**
      * 段落条件标签处理
+     *
      * @param paragraph
      * @param params
      */
@@ -310,6 +312,13 @@ public class NiceDoc {
 
     }
 
+    /**
+     * 设置word只读
+     * @param pass
+     */
+    public void setReadOnly(String pass) {
+        docx.enforceFillingFormsProtection(pass, HashAlgorithm.sha512);
+    }
 
     /**
      * 保存word文件到目录下
