@@ -187,6 +187,8 @@ public class NiceDoc {
                     String text = run.getText(0);
                     if (text == null)
                         continue;
+                    else
+                        newRun.setText(text);
 
                     Matcher labels = NiceUtils.getMatchingLabels(text);
                     while (labels.find()) {
@@ -314,6 +316,7 @@ public class NiceDoc {
 
     /**
      * 设置word只读
+     *
      * @param pass
      */
     public void setReadOnly(String pass) {
