@@ -1,6 +1,8 @@
 # NiceDoc
 快速、高效、优雅地利用word、excel模板，根据相关标识自动生成相应格式的优美文档工具。
 
+.Net 版本移步 https://github.com/miracleren/NiceDoc.Net
+
 # 示例
 ## word模板
 resources/Template/test.docx 示例模板
