@@ -191,7 +191,7 @@ public class NiceDoc {
                     Matcher labels = NiceUtils.getMatchingLabels(text);
                     while (labels.find()) {
                         String label = labels.group();
-                        String[] key = label.split(":");
+                        String[] key = label.split("#");
                         if (params.containsKey(key[key.length - 1])) {
                             newRun.setText(text.replace(NiceUtils.labelFormat(label), params.get(key[key.length - 1]).toString()), 0);
                         }
