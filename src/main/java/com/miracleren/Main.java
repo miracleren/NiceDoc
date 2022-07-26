@@ -14,7 +14,7 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("_   _ _          _____             ");
+        System.out.println(" _   _ _          _____             ");
         System.out.println("| \\ | (_)        |  __ \\            ");
         System.out.println("|  \\| |_  ___ ___| |  | | ___   ___ ");
         System.out.println("| . ` | |/ __/ _ \\ |  | |/ _ \\ / __|");
