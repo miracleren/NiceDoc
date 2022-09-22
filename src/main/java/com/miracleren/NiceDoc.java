@@ -2,6 +2,7 @@ package com.miracleren;
 
 import com.sun.org.apache.xpath.internal.objects.XObject;
 import org.apache.poi.poifs.crypt.HashAlgorithm;
+import org.apache.poi.util.StringUtil;
 import org.apache.poi.xwpf.usermodel.*;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTRow;
@@ -264,8 +265,9 @@ public class NiceDoc {
                     //标签书签
                     if (params.containsKey(key[0])) {
                         //普通文本标签
+                        String val = params.get(key[0]) == null ? "" : params.get(key[0]).toString();
                         if (key.length == 1) {
-                            run.setText(nowText.replace(NiceUtils.labelFormat(label), params.get(key[0]).toString()), 0);
+                            run.setText(nowText.replace(NiceUtils.labelFormat(label), val), 0);
                             break;
                         }
 
@@ -274,8 +276,8 @@ public class NiceDoc {
                             if (key[1].startsWith("[") && key[1].endsWith("]")) {
                                 String group = key[1].substring(1, key[1].length() - 1);
                                 for (String keyVal : group.split(",")) {
-                                    if (keyVal.indexOf(params.get(key[0]) + ":") == 0) {
-                                        run.setText(nowText.replace(NiceUtils.labelFormat(label), keyVal.replace(params.get(key[0]) + ":", "")), 0);
+                                    if (keyVal.indexOf(val + ":") == 0) {
+                                        run.setText(nowText.replace(NiceUtils.labelFormat(label), keyVal.replace(val + ":", "")), 0);
                                         removeRun(labelRuns);
                                     }
                                 }
@@ -285,7 +287,7 @@ public class NiceDoc {
                             //bool类型标签
                             String[] bool = key[1].split(":");
                             if (bool.length == 2) {
-                                run.setText(nowText.replace(NiceUtils.labelFormat(label), params.get(key[0]).toString().equals("true") ? bool[0] : bool[1]), 0);
+                                run.setText(nowText.replace(NiceUtils.labelFormat(label), val.equals("true") ? bool[0] : bool[1]), 0);
                                 removeRun(labelRuns);
                                 break;
                             }
