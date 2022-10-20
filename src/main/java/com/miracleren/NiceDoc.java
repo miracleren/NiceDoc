@@ -212,16 +212,14 @@ public class NiceDoc {
      * @param params
      */
     private void replaceLabelsInParagraphs(List<XWPFParagraph> paragraphs, Map<String, Object> params) {
-        int i = 0;
-        for (XWPFParagraph paragraph : paragraphs) {
+        for (int i = 0; i < paragraphs.size(); i++) {
+            XWPFParagraph paragraph = paragraphs.get(i);
             String text = paragraph.getText();
             if (text == null || text.equals("") || !text.contains("{{"))
                 continue;
             else if (text.contains("{{v-"))
                 logicLabelsInParagraph(paragraphs, i, params);
-            else
-                replaceLabelsInParagraph(paragraph, params);
-            i++;
+            replaceLabelsInParagraph(paragraph, params);
         }
     }
 
@@ -249,7 +247,7 @@ public class NiceDoc {
         List<XWPFRun> labelRuns = new ArrayList<>();
         Boolean isShow = true;
 
-        for (int i = index + 2; i < paragraphs.size(); i++) {
+        for (int i = index; i < paragraphs.size(); i++) {
             XWPFParagraph paragraph = paragraphs.get(i);
             List<XWPFRun> runs = paragraph.getRuns();
 
@@ -292,7 +290,7 @@ public class NiceDoc {
                         } else if (label.equals("end-if")) {
                             run.setText(nowText.replace(NiceUtils.labelFormat(label), ""), 0);
                             removeRun(labelRuns);
-                            return;
+                            isShow = true;
                         }
 
 
