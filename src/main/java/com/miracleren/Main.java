@@ -40,10 +40,14 @@ public class Main {
 
         //枚举标签
         labels.put("likeBook", 2);
-
         //布尔标签
         labels.put("isQ", true);
-        labels.put("isNew", false);
+        //等于
+        labels.put("isNew", 2);
+        //多选二进制值
+        labels.put("look", 3);
+        //if语句
+        labels.put("showContent", 2);
         docx.pushLabels(labels);
 
         //表格

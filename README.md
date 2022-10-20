@@ -16,7 +16,7 @@ resources/Template/test.docx 示例模板
         } catch (Exception e) {
             e.printStackTrace();
         }
-        NiceDoc docx = new NiceDoc(path + "test.docx");
+       NiceDoc docx = new NiceDoc(path + "test.docx");
 
         Map<String, Object> labels = new HashMap<>();
         //值标签
@@ -27,10 +27,14 @@ resources/Template/test.docx 示例模板
 
         //枚举标签
         labels.put("likeBook", 2);
-
         //布尔标签
         labels.put("isQ", true);
-        labels.put("isNew", false);
+        //等于
+        labels.put("isNew", 2);
+        //多选二进制值
+        labels.put("look", 3);
+        //if语句
+        labels.put("showContent", 2);
         docx.pushLabels(labels);
 
         //表格
@@ -76,7 +80,30 @@ resources/Template/test.docx 示例模板
 {{label#√:□}}
 #### 说明
 标签用双大括号，标签值必须为true或false，井号后是对应true：false的填充值。
+值可以只保留一个true值，如：{{label#√}}，false时就空。
+
+## 等号判断标签填充
+#### 格式
+{{label=1#爱情:友情}}
+#### 说明
+标签用双大括号，标签label值如与等号对应值是否相等，则会填充井号对应true：false的填充值。
+值可以只保留一个true值，如：{{label=1#爱情}}，false时就空。
+
+## 位与运算判断标签填充
+#### 格式
+{{label&2#爱情:友情}}
+#### 说明
+标签用双大括号，标签label值如为多选（1、2、4、8、16值的和，即二进制位对应01是否选定），如label值为10时，label&2则为true，相应会填充true对应的值。
+值可以只保留一个true值，如：{{label&2#爱情}}，false时就空。
 
 
-
-
+## 逻辑判断if标签填充
+#### 格式
+{{v-if#showContent=1}}
+{{end-if}}
+#### 说明
+标签用双大括号，标签包含开始与结束标签，如标签值showContent=1成立，则包含内容显示，否则内容将删除。
+逻辑判断支持：
+    {{v-if#showContent}}，showContent布尔类型；
+    {{v-if#showContent=1}}，showContent值等于运算；
+    {{v-if#showContent&1}}，showContent值位与运算；

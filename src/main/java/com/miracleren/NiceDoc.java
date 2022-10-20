@@ -212,12 +212,16 @@ public class NiceDoc {
      * @param params
      */
     private void replaceLabelsInParagraphs(List<XWPFParagraph> paragraphs, Map<String, Object> params) {
+        int i = 0;
         for (XWPFParagraph paragraph : paragraphs) {
             String text = paragraph.getText();
             if (text == null || text.equals("") || !text.contains("{{"))
                 continue;
+            else if (text.contains("{{v-"))
+                logicLabelsInParagraph(paragraphs, i, params);
             else
                 replaceLabelsInParagraph(paragraph, params);
+            i++;
         }
     }
 
@@ -227,9 +231,84 @@ public class NiceDoc {
      * @param runs
      */
     private void removeRun(List<XWPFRun> runs) {
-        runs.remove(runs.size() - 1);
-        for (XWPFRun run : runs) {
-            run.setText("", 0);
+        //runs.remove(runs.size() - 1);
+        //for (XWPFRun run : runs) {
+        //    run.setText("", 0);
+        //}
+        for (int i = 0; i < runs.size() - 1; i++) {
+            runs.get(i).setText("", 0);
+        }
+    }
+
+    /**
+     * 逻辑语句处理
+     */
+    private void logicLabelsInParagraph(List<XWPFParagraph> paragraphs, Integer index, Map<String, Object> params) {
+        String nowText = "";
+        int runCount = 0;
+        List<XWPFRun> labelRuns = new ArrayList<>();
+        Boolean isShow = true;
+
+        for (int i = index + 2; i < paragraphs.size(); i++) {
+            XWPFParagraph paragraph = paragraphs.get(i);
+            List<XWPFRun> runs = paragraph.getRuns();
+
+            for (XWPFRun run : runs) {
+                System.out.println(run.toString());
+                if (run.getText(0) != null && (run.getText(0).contains("{{") || runCount > 0)) {
+                    nowText += run.getText(0);
+                    runCount++;
+                    labelRuns.add(run);
+
+                    Matcher labels = NiceUtils.getMatchingLabels(nowText);
+                    int labelFindCount = 0;
+                    while (labels.find()) {
+                        labelFindCount++;
+                        String label = labels.group();
+                        System.out.println(label);
+
+                        String[] key = label.split("#");
+
+                        if (key.length == 2) {
+                            Integer indexName = key[1].indexOf("=") + 1 + key[1].indexOf("&") + 1;
+                            String keyName = indexName > 0 ? key[1].substring(0, indexName - 1) : key[1];
+                            if (params.containsKey(keyName)) {
+                                String val = params.get(keyName) == null ? "" : params.get(keyName).toString();
+                                //条件判断语句
+                                if (key[0].equals("v-if")) {
+                                    if (key[1].contains("=")) {
+                                        isShow = val.equals(key[1].substring(indexName));
+                                    } else if (key[1].contains("&")) {
+                                        Integer curVal = Integer.valueOf(key[1].substring(indexName));
+                                        isShow = (Integer.valueOf(val) & curVal) == curVal;
+                                    } else {
+                                        isShow = val.equals("true");
+                                    }
+                                    run.setText(nowText.replace(NiceUtils.labelFormat(label), ""), 0);
+                                    removeRun(labelRuns);
+                                    break;
+                                }
+                            }
+                        } else if (label.equals("end-if")) {
+                            run.setText(nowText.replace(NiceUtils.labelFormat(label), ""), 0);
+                            removeRun(labelRuns);
+                            return;
+                        }
+
+
+                    }
+                    if (labelFindCount > 0) {
+                        nowText = "";
+                        runCount = 0;
+                        labelRuns = new ArrayList<>();
+                    }
+                }
+
+                if (isShow != true) {
+                    run.setText("", 0);
+                }
+
+            }
         }
     }
 
@@ -262,10 +341,12 @@ public class NiceDoc {
                     String label = labels.group();
 
                     String[] key = label.split("#");
+                    Integer indexName = key[0].indexOf("=") + 1 + key[0].indexOf("&") + 1;
+                    String keyName = indexName > 0 ? key[0].substring(0, indexName - 1) : key[0];
                     //标签书签
-                    if (params.containsKey(key[0])) {
+                    if (params.containsKey(keyName)) {
                         //普通文本标签
-                        String val = params.get(key[0]) == null ? "" : params.get(key[0]).toString();
+                        String val = params.get(keyName) == null ? "" : params.get(keyName).toString();
                         if (key.length == 1) {
                             run.setText(nowText.replace(NiceUtils.labelFormat(label), val), 0);
                             break;
@@ -284,10 +365,21 @@ public class NiceDoc {
                                 break;
                             }
 
-                            //bool类型标签
+                            //值判定类型标签
                             String[] bool = key[1].split(":");
-                            if (bool.length == 2) {
-                                run.setText(nowText.replace(NiceUtils.labelFormat(label), val.equals("true") ? bool[0] : bool[1]), 0);
+                            String trueVal = bool[0];
+                            String falseVal = bool.length == 1 ? "" : bool[1];
+                            if (bool.length >= 1) {
+                                String textVal = "";
+                                if (key[0].contains("=")) {
+                                    textVal = val.equals(key[0].substring(indexName)) ? trueVal : falseVal;
+                                } else if (key[0].contains("&")) {
+                                    Integer curVal = Integer.valueOf(key[0].substring(indexName));
+                                    textVal = (Integer.valueOf(val) & curVal) == curVal ? trueVal : falseVal;
+                                } else {
+                                    textVal = val.equals("true") ? trueVal : falseVal;
+                                }
+                                run.setText(nowText.replace(NiceUtils.labelFormat(label), textVal), 0);
                                 removeRun(labelRuns);
                                 break;
                             }
@@ -300,6 +392,25 @@ public class NiceDoc {
                     nowText = "";
                     runCount = 0;
                     labelRuns = new ArrayList<>();
+                }
+            }
+
+        }
+    }
+
+    /**
+     * 清除条件语句产生的空段落
+     */
+    public void removeNullParagraphs() {
+        List<XWPFParagraph> paragraphs = docx.getParagraphs();
+        List<IBodyElement> listBe = docx.getBodyElements();
+
+        for (int i = 0; i < listBe.size(); i++) {
+            if (listBe.get(i).getElementType() == BodyElementType.PARAGRAPH) {
+                if (paragraphs.get(docx.getParagraphPos(i)).getText().contains("R")) {
+                    docx.removeBodyElement(i);
+                    i--;
+                    continue;
                 }
             }
 
@@ -333,6 +444,7 @@ public class NiceDoc {
      */
     public void save(String path, String name) {
         try {
+            //removeNullParagraphs();
             FileOutputStream outStream = new FileOutputStream(path + name);
             docx.write(outStream);
             outStream.close();
@@ -340,4 +452,6 @@ public class NiceDoc {
             e.printStackTrace();
         }
     }
+
+
 }
