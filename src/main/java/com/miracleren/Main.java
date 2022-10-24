@@ -48,6 +48,13 @@ public class Main {
         labels.put("look", 3);
         //if语句
         labels.put("showContent", 2);
+        //日期格式标签
+        labels.put("printDate",new Date());
+
+        labels.put("fileReceiveBy", "陈先生");
+        labels.put("fileRelation", 2);
+        labels.put("fileDate", new Date());
+
         docx.pushLabels(labels);
 
         //表格

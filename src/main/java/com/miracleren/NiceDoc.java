@@ -8,10 +8,8 @@ import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTRow;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.regex.Matcher;
 
 /**
@@ -263,7 +261,7 @@ public class NiceDoc {
                     while (labels.find()) {
                         labelFindCount++;
                         String label = labels.group();
-                        System.out.println(label);
+                        //System.out.println(label);
 
                         String[] key = label.split("#");
 
@@ -344,23 +342,33 @@ public class NiceDoc {
                     //标签书签
                     if (params.containsKey(keyName)) {
                         //普通文本标签
-                        String val = params.get(keyName) == null ? "" : params.get(keyName).toString();
+                        Object val = params.get(keyName) == null ? "" : params.get(keyName);
                         if (key.length == 1) {
-                            run.setText(nowText.replace(NiceUtils.labelFormat(label), val), 0);
-                            break;
+                            nowText = nowText.replace(NiceUtils.labelFormat(label), val.toString());
+                            run.setText(nowText, 0);
+                            continue;
                         }
 
                         if (key.length == 2) {
+                            //日期类型填充
+                            if (key[1].startsWith("Date:")) {
+                                String textVal = val.equals("") ? val.toString() : new SimpleDateFormat(key[1].replace("Date:", "")).format(val);
+                                nowText = nowText.replace(NiceUtils.labelFormat(label), textVal);
+                                run.setText(nowText, 0);
+                                continue;
+                            }
+
                             //枚举数组标签
                             if (key[1].startsWith("[") && key[1].endsWith("]")) {
                                 String group = key[1].substring(1, key[1].length() - 1);
                                 for (String keyVal : group.split(",")) {
                                     if (keyVal.indexOf(val + ":") == 0) {
-                                        run.setText(nowText.replace(NiceUtils.labelFormat(label), keyVal.replace(val + ":", "")), 0);
+                                        nowText = nowText.replace(NiceUtils.labelFormat(label), keyVal.replace(val + ":", ""));
+                                        run.setText(nowText, 0);
                                         removeRun(labelRuns);
                                     }
                                 }
-                                break;
+                                continue;
                             }
 
                             //值判定类型标签
@@ -373,18 +381,20 @@ public class NiceDoc {
                                     textVal = val.equals(key[0].substring(indexName)) ? trueVal : falseVal;
                                 } else if (key[0].contains("&")) {
                                     Integer curVal = Integer.valueOf(key[0].substring(indexName));
-                                    textVal = (Integer.valueOf(val) & curVal) == curVal ? trueVal : falseVal;
+                                    textVal = (Integer.valueOf(val.toString()) & curVal) == curVal ? trueVal : falseVal;
                                 } else {
                                     textVal = val.equals("true") ? trueVal : falseVal;
                                 }
-                                run.setText(nowText.replace(NiceUtils.labelFormat(label), textVal), 0);
+                                nowText = nowText.replace(NiceUtils.labelFormat(label), textVal);
+                                run.setText(nowText, 0);
                                 removeRun(labelRuns);
-                                break;
+                                continue;
                             }
 
                         }
                     }
                 }
+
 
                 if (labelFindCount > 0) {
                     nowText = "";

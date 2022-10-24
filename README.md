@@ -107,3 +107,9 @@ resources/Template/test.docx 示例模板
     {{v-if#showContent}}，showContent布尔类型；
     {{v-if#showContent=1}}，showContent值等于运算；
     {{v-if#showContent&1}}，showContent值位与运算；
+
+## 日期格式标签填充
+#### 格式
+{{printDate#Date:yyyy年MM月dd日}}
+#### 说明
+标签用双大括号，Date:后为日期格式，printDate传入类型必须为Date类型。
