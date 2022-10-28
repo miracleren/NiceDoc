@@ -22,6 +22,8 @@ import java.util.regex.Matcher;
 public class NiceDoc {
     //private HWPFDocument doc;
     private XWPFDocument docx;
+    private int status = 0;
+    private List<XWPFTable> allTables = new ArrayList<>();
 
     /**
      * 根据路径初始化word模板
@@ -36,6 +38,11 @@ public class NiceDoc {
         try {
             in = new FileInputStream(path);
             docx = new XWPFDocument(in);
+
+            //遍历段落生加载表格列表
+            this.allTables.addAll(docx.getTables());
+            pushLabels(new HashMap<>());
+            status = 1;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -43,7 +50,6 @@ public class NiceDoc {
                 docx = new XWPFDocument();
         }
     }
-
 
     /**
      * 往模板填充标签值
@@ -58,7 +64,7 @@ public class NiceDoc {
         replaceLabelsInParagraphs(paragraphs, labels);
 
         //遍历表格内容，并填充标签值
-        List<XWPFTable> tables = docx.getTables();
+        List<XWPFTable> tables = status == 0 ? docx.getTables() : this.allTables;
         for (XWPFTable table : tables) {
             //表格行
             List<XWPFTableRow> rows = table.getRows();
@@ -106,7 +112,7 @@ public class NiceDoc {
      * @param list
      */
     public void pushTable(String tableName, List<Map<String, Object>> list) {
-        List<XWPFTable> tables = docx.getTables();
+        List<XWPFTable> tables = this.allTables;
         for (XWPFTable table : tables) {
             boolean isFind = false;
             XWPFTableRow baseRow = null;
@@ -212,6 +218,11 @@ public class NiceDoc {
     private void replaceLabelsInParagraphs(List<XWPFParagraph> paragraphs, Map<String, Object> params) {
         for (int i = 0; i < paragraphs.size(); i++) {
             XWPFParagraph paragraph = paragraphs.get(i);
+
+            //获取doc表格，包括子表格，docx.getTables()无法获取子表格
+            if (status == 0 && !this.allTables.containsAll(paragraph.getBody().getTables()))
+                this.allTables.addAll(paragraph.getBody().getTables());
+
             String text = paragraph.getText();
             if (text == null || text.equals("") || !text.contains("{{"))
                 continue;
@@ -461,5 +472,11 @@ public class NiceDoc {
         }
     }
 
+    /**
+     * 获取docx实体
+     */
+    public XWPFDocument getDocx() {
+        return this.docx;
+    }
 
 }
