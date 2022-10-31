@@ -220,8 +220,11 @@ public class NiceDoc {
             XWPFParagraph paragraph = paragraphs.get(i);
 
             //获取doc表格，包括子表格，docx.getTables()无法获取子表格
-            if (status == 0 && !this.allTables.containsAll(paragraph.getBody().getTables()))
-                this.allTables.addAll(paragraph.getBody().getTables());
+            if (status == 0) {
+                if (!this.allTables.containsAll(paragraph.getBody().getTables()))
+                    this.allTables.addAll(paragraph.getBody().getTables());
+                return;
+            }
 
             String text = paragraph.getText();
             if (text == null || text.equals("") || !text.contains("{{"))
@@ -261,7 +264,7 @@ public class NiceDoc {
             List<XWPFRun> runs = paragraph.getRuns();
 
             for (XWPFRun run : runs) {
-                System.out.println(run.toString());
+                //System.out.println(run.toString());
                 if (run.getText(0) != null && (run.getText(0).contains("{{") || runCount > 0)) {
                     nowText += run.getText(0);
                     runCount++;
@@ -291,9 +294,17 @@ public class NiceDoc {
                                     } else {
                                         isShow = val.equals("true");
                                     }
-                                    run.setText(nowText.replace(NiceUtils.labelFormat(label), ""), 0);
+
+                                    if (isShow == false) {
+                                        if (nowText.indexOf("{{end-if}}") > nowText.indexOf(NiceUtils.labelFormat(label)))
+                                            nowText = nowText.replace(nowText.substring(nowText.indexOf(NiceUtils.labelFormat(label)), nowText.indexOf("{{end-if}}")), "");
+                                        else
+                                            nowText = nowText.replace(nowText.substring(nowText.indexOf(NiceUtils.labelFormat(label))), "");
+                                    } else
+                                        nowText = nowText.replace(NiceUtils.labelFormat(label), "");
+
+                                    run.setText(nowText, 0);
                                     removeRun(labelRuns);
-                                    break;
                                 }
                             }
                         } else if (label.equals("end-if")) {
@@ -301,8 +312,6 @@ public class NiceDoc {
                             removeRun(labelRuns);
                             isShow = true;
                         }
-
-
                     }
                     if (labelFindCount > 0) {
                         nowText = "";
