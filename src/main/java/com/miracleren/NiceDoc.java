@@ -157,8 +157,9 @@ public class NiceDoc {
                         addRowIndex++;
                     }
 
-                    baseRow = null;
+                    //baseRow = null;
                     table.removeRow(i);
+                    break;
                 }
             }
             //删除table标识行
