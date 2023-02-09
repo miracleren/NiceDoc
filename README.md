@@ -20,7 +20,7 @@ resources/Template/test.docx 示例模板 目前只支持docx格式的word模板
         } catch (Exception e) {
             e.printStackTrace();
         }
-       NiceDoc docx = new NiceDoc(path + "test.docx");
+        NiceDoc docx = new NiceDoc(path + "test.docx");
 
         Map<String, Object> labels = new HashMap<>();
         //值标签
@@ -39,6 +39,16 @@ resources/Template/test.docx 示例模板 目前只支持docx格式的word模板
         labels.put("look", 3);
         //if语句
         labels.put("showContent", 2);
+        //日期格式标签
+        labels.put("printDate",new Date());
+
+        labels.put("fileReceiveBy", "陈先生");
+        labels.put("fileRelation", 2);
+        labels.put("fileDate", new Date());
+
+        //添加头像
+        labels.put("headImg","D:/head.png");
+
         docx.pushLabels(labels);
 
         //表格
@@ -52,6 +62,7 @@ resources/Template/test.docx 示例模板 目前只支持docx格式的word模板
         book2.put("time", "1923年12月，上册；1924年6月，下册");
         books.add(book2);
         docx.pushTable("books", books);
+
 
         //生成文档
         docx.save(path, UUID.randomUUID() + ".docx");
