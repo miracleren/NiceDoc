@@ -1,12 +1,17 @@
 package com.miracleren;
 
 import com.sun.org.apache.xpath.internal.objects.XObject;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.poifs.crypt.HashAlgorithm;
 import org.apache.poi.util.StringUtil;
+import org.apache.poi.util.Units;
 import org.apache.poi.xwpf.usermodel.*;
+import org.openxmlformats.schemas.drawingml.x2006.main.STSchemeColorVal;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTRow;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -413,6 +418,38 @@ public class NiceDoc {
                             }
 
                         }
+                    } else if (key[0].equals("v-image")) {
+                        //图片标签处理
+                        try {
+                            //获取图片相关信息
+                            run.setText("", 0);
+                            removeRun(labelRuns);
+                            String[] val = key[1].split(",");
+                            String path = "";
+                            int scale = 100;
+                            String picName = "";
+                            for (String valKey : val) {
+                                if (valKey.startsWith("path:")) {
+                                    picName = valKey.replace("path:", "");
+                                    path = params.get(picName).toString();
+                                }
+                                if (valKey.startsWith("scale:"))
+                                    scale = Integer.valueOf(valKey.replace("scale:", ""));
+                            }
+
+                            //计算高度宽度
+                            File picFile = new File(path);
+                            BufferedImage read = ImageIO.read(picFile);
+                            int width = Units.toEMU(read.getWidth() * scale / 100);
+                            int height = Units.toEMU(read.getHeight() * scale / 100);
+
+                            //插入图片
+                            InputStream stream = new FileInputStream(path);
+                            run.addPicture(stream, XWPFDocumentPicType(path), picName, width, height);
+                            return;
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
 
@@ -425,6 +462,33 @@ public class NiceDoc {
             }
 
         }
+    }
+
+    public int XWPFDocumentPicType(String path) {
+        if (path.endsWith(".emf")) {
+            return XWPFDocument.PICTURE_TYPE_EMF;
+        } else if (path.endsWith(".wmf")) {
+            return XWPFDocument.PICTURE_TYPE_WMF;
+        } else if (path.endsWith(".pict")) {
+            return XWPFDocument.PICTURE_TYPE_PICT;
+        } else if (path.endsWith(".jpeg") || path.endsWith(".jpg")) {
+            return XWPFDocument.PICTURE_TYPE_JPEG;
+        } else if (path.endsWith(".png")) {
+            return XWPFDocument.PICTURE_TYPE_PNG;
+        } else if (path.endsWith(".dib")) {
+            return XWPFDocument.PICTURE_TYPE_DIB;
+        } else if (path.endsWith(".gif")) {
+            return XWPFDocument.PICTURE_TYPE_GIF;
+        } else if (path.endsWith(".tiff")) {
+            return XWPFDocument.PICTURE_TYPE_TIFF;
+        } else if (path.endsWith(".eps")) {
+            return XWPFDocument.PICTURE_TYPE_EPS;
+        } else if (path.endsWith(".bmp")) {
+            return XWPFDocument.PICTURE_TYPE_BMP;
+        } else if (path.endsWith(".wpg")) {
+            return XWPFDocument.PICTURE_TYPE_WPG;
+        }
+        return 0;
     }
 
     /**

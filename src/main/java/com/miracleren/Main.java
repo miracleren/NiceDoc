@@ -55,6 +55,9 @@ public class Main {
         labels.put("fileRelation", 2);
         labels.put("fileDate", new Date());
 
+        //添加头像
+        labels.put("headImg","D:/head.png");
+
         docx.pushLabels(labels);
 
         //表格
@@ -68,6 +71,7 @@ public class Main {
         book2.put("time", "1923年12月，上册；1924年6月，下册");
         books.add(book2);
         docx.pushTable("books", books);
+
 
         //生成文档
         docx.save(path, UUID.randomUUID() + ".docx");
