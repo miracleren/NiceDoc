@@ -431,21 +431,22 @@ public class NiceDoc {
                             for (String valKey : val) {
                                 if (valKey.startsWith("path:")) {
                                     picName = valKey.replace("path:", "");
-                                    path = params.get(picName).toString();
                                 }
                                 if (valKey.startsWith("scale:"))
                                     scale = Integer.valueOf(valKey.replace("scale:", ""));
                             }
+                            if (params.containsKey(picName)) {
+                                path = params.get(picName).toString();
+                                //计算高度宽度
+                                File picFile = new File(path);
+                                BufferedImage read = ImageIO.read(picFile);
+                                int width = Units.toEMU(read.getWidth() * scale / 100);
+                                int height = Units.toEMU(read.getHeight() * scale / 100);
 
-                            //计算高度宽度
-                            File picFile = new File(path);
-                            BufferedImage read = ImageIO.read(picFile);
-                            int width = Units.toEMU(read.getWidth() * scale / 100);
-                            int height = Units.toEMU(read.getHeight() * scale / 100);
-
-                            //插入图片
-                            InputStream stream = new FileInputStream(path);
-                            run.addPicture(stream, XWPFDocumentPicType(path), picName, width, height);
+                                //插入图片
+                                InputStream stream = new FileInputStream(path);
+                                run.addPicture(stream, XWPFDocumentPicType(path), picName, width, height);
+                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
