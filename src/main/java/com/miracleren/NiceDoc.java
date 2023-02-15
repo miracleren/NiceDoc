@@ -422,8 +422,6 @@ public class NiceDoc {
                         //图片标签处理
                         try {
                             //获取图片相关信息
-                            run.setText("", 0);
-                            removeRun(labelRuns);
                             String[] val = key[1].split(",");
                             String path = "";
                             int scale = 100;
@@ -435,7 +433,10 @@ public class NiceDoc {
                                 if (valKey.startsWith("scale:"))
                                     scale = Integer.valueOf(valKey.replace("scale:", ""));
                             }
+
                             if (params.containsKey(picName)) {
+                                run.setText("", 0);
+                                removeRun(labelRuns);
                                 path = params.get(picName).toString();
                                 //计算高度宽度
                                 File picFile = new File(path);
