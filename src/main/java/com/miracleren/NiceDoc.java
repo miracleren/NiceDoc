@@ -447,6 +447,7 @@ public class NiceDoc {
                                 //插入图片
                                 InputStream stream = new FileInputStream(path);
                                 run.addPicture(stream, XWPFDocumentPicType(path), picName, width, height);
+                                stream.close();
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
