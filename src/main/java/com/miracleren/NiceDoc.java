@@ -1,13 +1,9 @@
 package com.miracleren;
 
-import com.sun.org.apache.xpath.internal.objects.XObject;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.poifs.crypt.HashAlgorithm;
 import org.apache.poi.util.StringUtil;
 import org.apache.poi.util.Units;
 import org.apache.poi.xwpf.usermodel.*;
-import org.openxmlformats.schemas.drawingml.x2006.main.STSchemeColorVal;
-import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTRow;
 
 import javax.imageio.ImageIO;
@@ -420,41 +416,44 @@ public class NiceDoc {
                         }
                     } else if (key[0].equals("v-image")) {
                         //图片标签处理
-                        try {
-                            //获取图片相关信息
-                            String[] val = key[1].split(",");
-                            String path = "";
-                            int scale = 100;
-                            String picName = "";
-                            for (String valKey : val) {
-                                if (valKey.startsWith("path:")) {
-                                    picName = valKey.replace("path:", "");
-                                }
-                                if (valKey.startsWith("scale:"))
-                                    scale = Integer.valueOf(valKey.replace("scale:", ""));
-                            }
 
-                            if (params.containsKey(picName)) {
-                                run.setText("", 0);
-                                removeRun(labelRuns);
-                                path = params.get(picName).toString();
-                                //计算高度宽度
-                                File picFile = new File(path);
-                                BufferedImage read = ImageIO.read(picFile);
-                                int width = Units.toEMU(read.getWidth() * scale / 100);
-                                int height = Units.toEMU(read.getHeight() * scale / 100);
-
-                                //插入图片
-                                InputStream stream = new FileInputStream(path);
-                                run.addPicture(stream, XWPFDocumentPicType(path), picName, width, height);
-                                stream.close();
+                        //获取图片相关信息
+                        String[] val = key[1].split(",");
+                        int scale = 100;
+                        String picName = "";
+                        for (String valKey : val) {
+                            if (valKey.startsWith("path:")) {
+                                picName = valKey.replace("path:", "");
                             }
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                            if (valKey.startsWith("scale:"))
+                                scale = Integer.valueOf(valKey.replace("scale:", ""));
                         }
+
+                        if (params.containsKey(picName)) {
+                            run.setText("", 0);
+                            removeRun(labelRuns);
+
+                            String path = String.valueOf(params.get(picName));
+                            if (StringUtil.isNotBlank(path)) {
+                                try {
+                                    //计算高度宽度
+                                    File picFile = new File(path);
+                                    BufferedImage read = ImageIO.read(picFile);
+                                    int width = Units.toEMU(read.getWidth() * scale / 100);
+                                    int height = Units.toEMU(read.getHeight() * scale / 100);
+
+                                    //插入图片
+                                    InputStream stream = new FileInputStream(path);
+                                    run.addPicture(stream, XWPFDocumentPicType(path), picName, width, height);
+                                    stream.close();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+
                     }
                 }
-
 
                 if (labelFindCount > 0) {
                     nowText = "";
