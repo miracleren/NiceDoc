@@ -145,7 +145,8 @@ resources/Template/test.docx 示例模板 目前只支持docx格式的word模板
 
 #### 说明
 
-标签用双大括号，标签头为v-image，path值为图片的绝对路径，scale为图片的缩放比例值，默认为100原图。
+标签用双大括号，标签头为v-image，path值为图片的绝对路径，scale为图片的缩放比例值，默认为100原图；
+同时支持直接写{{v-image#path:headImg,size:50*50}}，其中值如size:width*height。
 
 ## 逻辑判断if标签填充
 

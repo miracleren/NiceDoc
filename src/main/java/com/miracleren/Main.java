@@ -49,14 +49,14 @@ public class Main {
         //if语句
         labels.put("showContent", 2);
         //日期格式标签
-        labels.put("printDate",new Date());
+        labels.put("printDate", new Date());
 
         labels.put("fileReceiveBy", "陈先生");
         labels.put("fileRelation", 2);
         labels.put("fileDate", new Date());
 
         //添加头像
-        labels.put("headImg","D:/head.png");
+        labels.put("headImg", path + "head.png");
 
         docx.pushLabels(labels);
 

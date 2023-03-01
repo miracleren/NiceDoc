@@ -32,8 +32,7 @@ public class NiceDoc {
      * @param path
      */
     public NiceDoc(String path) {
-        if (!path.endsWith(".docx"))
-            System.out.println("无效文档后缀，当前只支持docx格式word文档模板。");
+        if (!path.endsWith(".docx")) System.out.println("无效文档后缀，当前只支持docx格式word文档模板。");
 
         FileInputStream in;
         try {
@@ -47,8 +46,7 @@ public class NiceDoc {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (docx == null)
-                docx = new XWPFDocument();
+            if (docx == null) docx = new XWPFDocument();
         }
     }
 
@@ -141,11 +139,9 @@ public class NiceDoc {
                             break;
                         }
                     }
-                    if (!isFind)
-                        break;
+                    if (!isFind) break;
                 }
-                if (!isFind)
-                    break;
+                if (!isFind) break;
 
                 //已知数据行，开始填充数据
                 if (baseRow != null) {
@@ -164,8 +160,7 @@ public class NiceDoc {
                 }
             }
             //删除table标识行
-            if (isFind)
-                table.removeRow(0);
+            if (isFind) table.removeRow(0);
         }
     }
 
@@ -192,10 +187,8 @@ public class NiceDoc {
                     newRun.getCTR().setRPr(run.getCTR().getRPr());
 
                     String text = run.getText(0);
-                    if (text == null)
-                        continue;
-                    else
-                        newRun.setText(text);
+                    if (text == null) continue;
+                    else newRun.setText(text);
 
                     Matcher labels = NiceUtils.getMatchingLabels(text);
                     while (labels.find()) {
@@ -229,10 +222,8 @@ public class NiceDoc {
             }
 
             String text = paragraph.getText();
-            if (text == null || text.equals("") || !text.contains("{{"))
-                continue;
-            else if (text.contains("{{v-"))
-                logicLabelsInParagraph(paragraphs, i, params);
+            if (text == null || text.equals("") || !text.contains("{{")) continue;
+            else if (text.contains("{{v-")) logicLabelsInParagraph(paragraphs, i, params);
             replaceLabelsInParagraph(paragraph, params);
         }
     }
@@ -302,8 +293,7 @@ public class NiceDoc {
                                             nowText = nowText.replace(nowText.substring(nowText.indexOf(NiceUtils.labelFormat(label)), nowText.indexOf("{{end-if}}")), "");
                                         else
                                             nowText = nowText.replace(nowText.substring(nowText.indexOf(NiceUtils.labelFormat(label))), "");
-                                    } else
-                                        nowText = nowText.replace(NiceUtils.labelFormat(label), "");
+                                    } else nowText = nowText.replace(NiceUtils.labelFormat(label), "");
 
                                     run.setText(nowText, 0);
                                     removeRun(labelRuns);
@@ -420,13 +410,15 @@ public class NiceDoc {
                         //获取图片相关信息
                         String[] val = key[1].split(",");
                         int scale = 100;
+                        String[] sizes = {};
                         String picName = "";
                         for (String valKey : val) {
-                            if (valKey.startsWith("path:")) {
+                            if (valKey.startsWith("path:"))
                                 picName = valKey.replace("path:", "");
-                            }
                             if (valKey.startsWith("scale:"))
                                 scale = Integer.valueOf(valKey.replace("scale:", ""));
+                            if (valKey.startsWith("size:"))
+                                sizes = valKey.replace("size:", "").split("\\*");
                         }
 
                         if (params.containsKey(picName)) {
@@ -436,11 +428,17 @@ public class NiceDoc {
                             String path = String.valueOf(params.get(picName));
                             if (StringUtil.isNotBlank(path)) {
                                 try {
+                                    int width, height;
                                     //计算高度宽度
-                                    File picFile = new File(path);
-                                    BufferedImage read = ImageIO.read(picFile);
-                                    int width = Units.toEMU(read.getWidth() * scale / 100);
-                                    int height = Units.toEMU(read.getHeight() * scale / 100);
+                                    if (sizes.length == 2) {
+                                        width = Units.toEMU(Double.valueOf(sizes[0]));
+                                        height = Units.toEMU(Double.valueOf(sizes[1]));
+                                    } else {
+                                        File picFile = new File(path);
+                                        BufferedImage read = ImageIO.read(picFile);
+                                        width = Units.toEMU(read.getWidth() * scale / 100);
+                                        height = Units.toEMU(read.getHeight() * scale / 100);
+                                    }
 
                                     //插入图片
                                     InputStream stream = new FileInputStream(path);
