@@ -426,7 +426,7 @@ public class NiceDoc {
                             removeRun(labelRuns);
 
                             String path = String.valueOf(params.get(picName));
-                            if (StringUtil.isNotBlank(path)) {
+                            if (path != "" && path != null) {
                                 try {
                                     int width, height;
                                     //计算高度宽度
