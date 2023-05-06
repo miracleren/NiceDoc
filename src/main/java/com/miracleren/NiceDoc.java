@@ -389,12 +389,12 @@ public class NiceDoc {
                             if (bool.length >= 1) {
                                 String textVal = "";
                                 if (key[0].contains("=")) {
-                                    textVal = val.equals(key[0].substring(indexName)) ? trueVal : falseVal;
+                                    textVal = val.toString().equals(key[0].substring(indexName)) ? trueVal : falseVal;
                                 } else if (key[0].contains("&")) {
                                     Integer curVal = Integer.valueOf(key[0].substring(indexName));
                                     textVal = (Integer.valueOf(val.toString()) & curVal) == curVal ? trueVal : falseVal;
                                 } else {
-                                    textVal = val.equals("true") ? trueVal : falseVal;
+                                    textVal = val.toString().equals("true") ? trueVal : falseVal;
                                 }
                                 nowText = nowText.replace(NiceUtils.labelFormat(label), textVal);
                                 run.setText(nowText, 0);
