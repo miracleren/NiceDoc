@@ -9,8 +9,5 @@
         <module name="NiceDoc" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="NiceDoc" target="8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
