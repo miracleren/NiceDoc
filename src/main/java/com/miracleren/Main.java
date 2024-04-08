@@ -16,7 +16,7 @@ public class Main {
         System.out.println("|_| \\_|_|\\___\\___|_____/ \\___/ \\___|");
 
         //测试示例模板生成word
-        TestTemplate.buildTestDocx();
+        //TestTemplate.buildTestDocx();
 
         //测试示例模板生成xlsx
         TestTemplate.buildTestXlsx();

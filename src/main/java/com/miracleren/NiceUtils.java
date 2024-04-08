@@ -1,6 +1,7 @@
 package com.miracleren;
 
 import java.lang.reflect.Field;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -84,5 +85,15 @@ public class NiceUtils {
         return object == null ? "" : object.toString();
     }
 
+
+    /**
+     * 判断对象是否是数值
+     *
+     * @param object
+     * @return
+     */
+    public static boolean isNumber(Object object) {
+        return object instanceof Number;
+    }
 
 }

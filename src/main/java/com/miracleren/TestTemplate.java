@@ -73,8 +73,34 @@ public class TestTemplate {
 
         Map<String, Object> labels = new HashMap<>();
         //值标签
-        labels.put("dateTime", "2023年1月1日");
+        labels.put("date", "2023年1月1日");
+        labels.put("title", "精选作品统计");
+        //枚举标签
+        labels.put("likeBook", 2);
+        //多选二进制值
+        labels.put("lookType", 3);
+        //if语句
+        labels.put("showBanner", 1);
+        //日期格式标签
+        labels.put("printDate", new Date());
+
         excel.pushLabels(labels);
+
+
+        //表格
+        List<Map<String, Object>> books = new ArrayList<>();
+        for (int i = 0; i <= 10; i++) {
+            Map<String, Object> book = new HashMap<>();
+            book.put("name", "汉文学史纲要" + i);
+            book.put("time", 1900 + i + "年");
+            book.put("intro", "简明扼要的介绍，本书是一本好书，推荐" + i + "星");
+            book.put("byName", "作者" + i + "号");
+            book.put("pages", i * 100);
+            books.add(book);
+        }
+        excel.pushTable("books", books);
+
+
         //生成文档
         excel.save(path, UUID.randomUUID() + ".xlsx");
     }
