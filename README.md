@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=300px height=150px src="images/logo.png" alt="NiceDoc logo"></a>
+ <img width=210px height=128px src="images/logo.png" alt="NiceDoc logo"></a>
 </p>
 
 <p align="center">
