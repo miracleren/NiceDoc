@@ -220,8 +220,8 @@ public class NiceExcel {
                 }
                 for (int cellNum = 0; cellNum <= row.getLastCellNum(); cellNum++) {
                     XSSFCell cell = row.getCell(cellNum);
-                    if (cell != null && cell.getStringCellValue().contains(tableName + "/col#")) {
-                        System.out.println("find the table by name :" + tableName);
+                    if (cell != null && cell.toString().contains(tableName + "/col#")) {
+                        //System.out.println("find the table by name :" + tableName);
 
                         // 插入数据空白行，数据往后移
                         sheet.shiftRows(rowNum + 1, sheet.getLastRowNum(), list.size() - 1);
@@ -240,7 +240,7 @@ public class NiceExcel {
                             for (int setCellNum = 0; setCellNum <= row.getLastCellNum(); setCellNum++) {
                                 XSSFCell setCell = setRow.getCell(setCellNum);
                                 if (setCell != null) {
-                                    String text = setCell.getStringCellValue();
+                                    String text = setCell.toString();
                                     Matcher labels = NiceUtils.getMatchingLabels(text);
                                     while (labels.find()) {
                                         String label = labels.group();
