@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90fda1be-659a-4693-8ec5-563e4dea02ad" name="Changes" comment="" />
+    <list default="true" id="90fda1be-659a-4693-8ec5-563e4dea02ad" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/miracleren/NiceUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/miracleren/NiceUtils.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -133,6 +136,8 @@
       <workItem from="1712555909017" duration="1434000" />
       <workItem from="1712729453689" duration="5505000" />
       <workItem from="1712803996234" duration="291000" />
+      <workItem from="1714114314856" duration="1343000" />
+      <workItem from="1716771670327" duration="1071000" />
     </task>
     <task id="LOCAL-00001" summary="修正部分bug，添加说明">
       <created>1647846779093</created>
@@ -442,7 +447,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712737149195</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="readme">
+      <option name="closed" value="true" />
+      <created>1714114450099</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1714114450099</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -96,4 +96,21 @@ public class NiceUtils {
         return object instanceof Number;
     }
 
+    /**
+     * 正侧表达式查找字符
+     * @param text
+     * @param regex
+     * @return
+     */
+    public static List<String> search(String text, String regex) {
+        List<String> results = new ArrayList<>();
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(text);
+
+        while (matcher.find()) {
+            results.add(matcher.group());
+        }
+
+        return results;
+    }
 }
