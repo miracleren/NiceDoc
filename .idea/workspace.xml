@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="90fda1be-659a-4693-8ec5-563e4dea02ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/miracleren/NiceUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/miracleren/NiceUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/miracleren/NiceExcel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/miracleren/NiceExcel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +137,7 @@
       <workItem from="1712729453689" duration="5505000" />
       <workItem from="1712803996234" duration="291000" />
       <workItem from="1714114314856" duration="1343000" />
-      <workItem from="1716771670327" duration="1071000" />
+      <workItem from="1716771670327" duration="2063000" />
     </task>
     <task id="LOCAL-00001" summary="修正部分bug，添加说明">
       <created>1647846779093</created>
@@ -455,7 +455,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714114450099</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="添加正则表达式">
+      <option name="closed" value="true" />
+      <created>1716772933230</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1716772933230</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,7 +506,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="调整表格标签格式" />
     <MESSAGE value="说明文档调整" />
     <MESSAGE value="添加设置为只读" />
     <MESSAGE value="修正表格问题" />
@@ -523,7 +530,8 @@
     <MESSAGE value="调整readme，新增1.3 jar包" />
     <MESSAGE value="修正说明文档" />
     <MESSAGE value="readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="readme" />
+    <MESSAGE value="添加正则表达式" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加正则表达式" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

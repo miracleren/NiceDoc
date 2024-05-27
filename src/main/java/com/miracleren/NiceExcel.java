@@ -2,6 +2,7 @@ package com.miracleren;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.poifs.crypt.HashAlgorithm;
 import org.apache.poi.ss.usermodel.ClientAnchor;
 import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.Drawing;
@@ -311,4 +312,14 @@ public class NiceExcel {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 设置excel只读
+     *
+     * @param pass
+     */
+    public void setReadOnly(String pass) {
+        xlsx.setWorkbookPassword(pass, HashAlgorithm.sha512);
+    }
+
 }
