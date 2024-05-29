@@ -1,5 +1,7 @@
 package com.miracleren;
 
+import org.apache.poi.util.StringUtil;
+
 import java.lang.reflect.Field;
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -98,6 +100,7 @@ public class NiceUtils {
 
     /**
      * 正侧表达式查找字符
+     *
      * @param text
      * @param regex
      * @return
@@ -112,5 +115,17 @@ public class NiceUtils {
         }
 
         return results;
+    }
+
+    /**
+     * 清除字符串尾巴
+     * @param s
+     * @return
+     */
+    public static String removeTail(String s) {
+        if (StringUtil.isNotBlank(s)) {
+            return s.substring(0, s.length() - 1);
+        }
+        return s;
     }
 }
