@@ -3,7 +3,6 @@ package com.miracleren;
 import org.apache.poi.util.StringUtil;
 
 import java.lang.reflect.Field;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -119,6 +118,7 @@ public class NiceUtils {
 
     /**
      * 清除字符串尾巴
+     *
      * @param s
      * @return
      */
@@ -127,5 +127,18 @@ public class NiceUtils {
             return s.substring(0, s.length() - 1);
         }
         return s;
+    }
+
+    /**
+     * 获取文件后缀名称
+     * @param fileName
+     * @return
+     */
+    public static String getFileExtension(String fileName) {
+        String[] parts = fileName.split("\\.");
+        if (parts.length > 1) {
+            return parts[parts.length - 1];
+        }
+        return "";
     }
 }

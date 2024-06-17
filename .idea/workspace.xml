@@ -138,7 +138,8 @@
       <workItem from="1712803996234" duration="291000" />
       <workItem from="1714114314856" duration="1343000" />
       <workItem from="1716771670327" duration="2111000" />
-      <workItem from="1716944943782" duration="219000" />
+      <workItem from="1716944943782" duration="1460000" />
+      <workItem from="1718588614657" duration="314000" />
     </task>
     <task id="LOCAL-00001" summary="修正部分bug，添加说明">
       <created>1647846779093</created>
@@ -472,7 +473,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716774090321</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="清除字符串尾巴方法类">
+      <option name="closed" value="true" />
+      <created>1716945188958</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1716945188958</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -515,7 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="添加设置为只读" />
     <MESSAGE value="修正表格问题" />
     <MESSAGE value=".net 版本说明" />
     <MESSAGE value="修正空指针问题" />
@@ -540,7 +548,8 @@
     <MESSAGE value="readme" />
     <MESSAGE value="添加正则表达式" />
     <MESSAGE value="添加方法设置excel只读" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加方法设置excel只读" />
+    <MESSAGE value="清除字符串尾巴方法类" />
+    <option name="LAST_COMMIT_MESSAGE" value="清除字符串尾巴方法类" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
