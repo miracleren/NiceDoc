@@ -4,7 +4,7 @@
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/badge/NiceDoc-1.3-cyan" />
+    <img src="https://img.shields.io/badge/NiceDoc-1.3.1-cyan" />
     <img src="https://img.shields.io/badge/java-8-purple" />
     <img src="https://img.shields.io/badge/.Net-4.8-yellow" />
     <img src="https://img.shields.io/badge/Android-blue" />

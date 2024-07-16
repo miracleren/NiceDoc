@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="90fda1be-659a-4693-8ec5-563e4dea02ad" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/miracleren/NiceUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/miracleren/NiceUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Template/test.docx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Template/test.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Template/test.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Template/test.xlsx" afterDir="false" />
+    <list default="true" id="90fda1be-659a-4693-8ec5-563e4dea02ad" name="Changes" comment="更新版本1.3.1 新增方法">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +142,7 @@
       <workItem from="1716771670327" duration="2111000" />
       <workItem from="1716944943782" duration="1460000" />
       <workItem from="1718588614657" duration="994000" />
-      <workItem from="1721120139753" duration="855000" />
+      <workItem from="1721120139753" duration="1036000" />
     </task>
     <task id="LOCAL-00001" summary="修正部分bug，添加说明">
       <created>1647846779093</created>
@@ -496,7 +492,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718588971729</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="更新版本1.3.1 新增方法">
+      <option name="closed" value="true" />
+      <created>1721121156875</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1721121156875</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -539,7 +543,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value=".net 版本说明" />
     <MESSAGE value="修正空指针问题" />
     <MESSAGE value="更新poi" />
     <MESSAGE value="新增标签位与和等号运算符；新增v-if逻辑语句标签。" />
@@ -564,7 +567,8 @@
     <MESSAGE value="添加方法设置excel只读" />
     <MESSAGE value="清除字符串尾巴方法类" />
     <MESSAGE value="文件后缀获取方法" />
-    <option name="LAST_COMMIT_MESSAGE" value="文件后缀获取方法" />
+    <MESSAGE value="更新版本1.3.1 新增方法" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新版本1.3.1 新增方法" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
