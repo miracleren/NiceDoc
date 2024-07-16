@@ -98,25 +98,6 @@ public class NiceUtils {
     }
 
     /**
-     * 正侧表达式查找字符
-     *
-     * @param text
-     * @param regex
-     * @return
-     */
-    public static List<String> search(String text, String regex) {
-        List<String> results = new ArrayList<>();
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(text);
-
-        while (matcher.find()) {
-            results.add(matcher.group());
-        }
-
-        return results;
-    }
-
-    /**
      * 清除字符串尾巴
      *
      * @param s
@@ -141,4 +122,19 @@ public class NiceUtils {
         }
         return "";
     }
+
+    /**
+     * 遍历查找内容
+     * @param map
+     * @param value
+     * @return
+     */
+    public static Integer findInMapByValue(Map<Integer, String> map, String value) {
+    for (Map.Entry<Integer, String> entry : map.entrySet()) {
+        if (entry.getValue().equals(value)) {
+            return entry.getKey(); // 返回找到值的键
+        }
+    }
+    return null; // 如果未找到，返回null
+}
 }
