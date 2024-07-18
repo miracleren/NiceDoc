@@ -17,6 +17,21 @@
 .Net 版本移步 https://github.com/miracleren/NiceDoc.Net  
 <br/>Android 示例 https://github.com/miracleren/NiceDoc.Android.Example
 
+#  🪛 引用 <a name = "说明"></a>
+Apache Maven
+
+    <dependency>
+        <groupId>com.muonzi</groupId>
+        <artifactId>nice-doc</artifactId>
+        <version>1.3.1</version>
+    </dependency>
+
+
+Gradle
+
+    implementation group: 'com.muonzi', name: 'nice-doc', version: '1.3.1'
+
+
 # 🧐 docx 模板生成Word文档说明 <a name = "说明"></a>
 
 ## word模板
