@@ -98,20 +98,8 @@ public class NiceUtils {
     }
 
     /**
-     * 清除字符串尾巴
-     *
-     * @param s
-     * @return
-     */
-    public static String removeTail(String s) {
-        if (StringUtil.isNotBlank(s)) {
-            return s.substring(0, s.length() - 1);
-        }
-        return s;
-    }
-
-    /**
      * 获取文件后缀名称
+     *
      * @param fileName
      * @return
      */
@@ -125,16 +113,27 @@ public class NiceUtils {
 
     /**
      * 遍历查找内容
+     *
      * @param map
      * @param value
      * @return
      */
     public static Integer findInMapByValue(Map<Integer, String> map, String value) {
-    for (Map.Entry<Integer, String> entry : map.entrySet()) {
-        if (entry.getValue().equals(value)) {
-            return entry.getKey(); // 返回找到值的键
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
+            if (entry.getValue().equals(value)) {
+                return entry.getKey(); // 返回找到值的键
+            }
         }
+        return null; // 如果未找到，返回null
     }
-    return null; // 如果未找到，返回null
-}
+
+    /**
+     * 计算字符串的长度
+     *
+     * @param str 需要计算长度的字符串
+     * @return 字符串的长度
+     */
+    public static int calculateLength(String str) {
+        return str.length();
+    }
 }
