@@ -3,10 +3,8 @@ package com.miracleren;
 import org.apache.poi.util.StringUtil;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -135,5 +133,28 @@ public class NiceUtils {
      */
     public static int calculateLength(String str) {
         return str.length();
+    }
+
+
+    /**
+     * 将字符串日期转换为Date类型，支持多种日期格式。
+     *
+     * @param dateString 日期字符串
+     * @param formats    可能的日期格式数组
+     * @return 解析成功返回Date对象，解析失败抛出异常
+     * @throws Exception 如果无法解析日期字符串
+     */
+    public static Date parseDate(String dateString, String[] formats) throws Exception {
+        for (String format : formats) {
+            SimpleDateFormat formatter = new SimpleDateFormat(format);
+            formatter.setTimeZone(TimeZone.getTimeZone("UTC")); // 设置时区，根据需要调整
+            try {
+                return formatter.parse(dateString);
+            } catch (Exception e) {
+                // 当前格式不匹配，尝试下一个格式
+            }
+        }
+        // 所有格式都不匹配，抛出异常
+        throw new Exception("无法解析日期: " + dateString);
     }
 }
