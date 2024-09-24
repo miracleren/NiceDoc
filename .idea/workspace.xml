@@ -89,6 +89,14 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -147,7 +155,8 @@
       <workItem from="1721120139753" duration="1257000" />
       <workItem from="1721200789323" duration="124000" />
       <workItem from="1723597899310" duration="1480000" />
-      <workItem from="1725601325536" duration="343000" />
+      <workItem from="1725601325536" duration="785000" />
+      <workItem from="1727157757629" duration="55000" />
     </task>
     <task id="LOCAL-00001" summary="修正部分bug，添加说明">
       <created>1647846779093</created>
@@ -401,14 +410,6 @@
       <option name="project" value="LOCAL" />
       <updated>1685949896015</updated>
     </task>
-    <task id="LOCAL-00039" summary="修正说明文档">
-      <option name="closed" value="true" />
-      <created>1712556946446</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1712556946446</updated>
-    </task>
     <task id="LOCAL-00040" summary="修正说明文档">
       <option name="closed" value="true" />
       <created>1712557058927</created>
@@ -505,7 +506,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723598410960</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="更新方法">
+      <option name="closed" value="true" />
+      <created>1725601695259</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1725601695260</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -548,7 +557,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="新增标签位与和等号运算符；新增v-if逻辑语句标签。" />
     <MESSAGE value="新增优化bug" />
     <MESSAGE value="新增日期格式标签填充" />
     <MESSAGE value="优化子表数据无法填充问题" />
@@ -573,7 +581,8 @@
     <MESSAGE value="更新版本1.3.1 新增方法" />
     <MESSAGE value="readme 1.3.1.jar" />
     <MESSAGE value="update" />
-    <option name="LAST_COMMIT_MESSAGE" value="update" />
+    <MESSAGE value="更新方法" />
+    <option name="LAST_COMMIT_MESSAGE" value="更新方法" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

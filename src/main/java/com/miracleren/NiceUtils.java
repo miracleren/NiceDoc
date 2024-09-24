@@ -95,19 +95,6 @@ public class NiceUtils {
         return object instanceof Number;
     }
 
-    /**
-     * 获取文件后缀名称
-     *
-     * @param fileName
-     * @return
-     */
-    public static String getFileExtension(String fileName) {
-        String[] parts = fileName.split("\\.");
-        if (parts.length > 1) {
-            return parts[parts.length - 1];
-        }
-        return "";
-    }
 
     /**
      * 遍历查找内容
