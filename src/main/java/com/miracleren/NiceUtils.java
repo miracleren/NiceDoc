@@ -112,16 +112,6 @@ public class NiceUtils {
         return null; // 如果未找到，返回null
     }
 
-    /**
-     * 计算字符串的长度
-     *
-     * @param str 需要计算长度的字符串
-     * @return 字符串的长度
-     */
-    public static int calculateLength(String str) {
-        return str.length();
-    }
-
 
     /**
      * 将字符串日期转换为Date类型，支持多种日期格式。
