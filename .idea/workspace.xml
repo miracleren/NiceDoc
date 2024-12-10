@@ -23,6 +23,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "miracleren"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/miracleren/NiceDoc.git",
+    "accountId": "59d25e9e-8938-4271-bff8-53f597e576e6"
+  }
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -157,7 +169,8 @@
       <workItem from="1723597899310" duration="1480000" />
       <workItem from="1725601325536" duration="785000" />
       <workItem from="1727157757629" duration="224000" />
-      <workItem from="1728715295102" duration="39000" />
+      <workItem from="1728715295102" duration="1592000" />
+      <workItem from="1733815571089" duration="89000" />
     </task>
     <task id="LOCAL-00001" summary="修正部分bug，添加说明">
       <created>1647846779093</created>
@@ -411,14 +424,6 @@
       <option name="project" value="LOCAL" />
       <updated>1685949896015</updated>
     </task>
-    <task id="LOCAL-00041" summary="修正说明文档">
-      <option name="closed" value="true" />
-      <created>1712557158982</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1712557158982</updated>
-    </task>
     <task id="LOCAL-00042" summary="修正说明文档">
       <option name="closed" value="true" />
       <created>1712557263598</created>
@@ -515,7 +520,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727157832471</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="更新方法">
+      <option name="closed" value="true" />
+      <created>1728715410293</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1728715410293</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

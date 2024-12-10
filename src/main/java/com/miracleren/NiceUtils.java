@@ -134,4 +134,24 @@ public class NiceUtils {
         // 所有格式都不匹配，抛出异常
         throw new Exception("无法解析日期: " + dateString);
     }
+
+    /**
+     * 是否数值
+     * @param str
+     * @return
+     */
+    public static boolean isNumeric(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            try {
+                Double.parseDouble(str);
+                return true;
+            } catch (NumberFormatException e1) {
+                return false;
+            }
+        }
+    }
+
 }
