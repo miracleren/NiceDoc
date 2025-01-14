@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="90fda1be-659a-4693-8ec5-563e4dea02ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/miracleren/NiceUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/miracleren/NiceUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Template/078dec95-51e6-4e17-bcfa-10a15e822fd4.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Template/b212c78c-790b-4771-8f16-3493f98ba90e.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Template/test.docx" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Template/test.docx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,20 +26,29 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "miracleren"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;miracleren&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/miracleren/NiceDoc.git",
-    "accountId": "59d25e9e-8938-4271-bff8-53f597e576e6"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/miracleren/NiceDoc.git&quot;,
+    &quot;accountId&quot;: &quot;59d25e9e-8938-4271-bff8-53f597e576e6&quot;
   }
-}]]></component>
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="customMavenHome" value="D:\Program Files\sdk\maven\apache-maven-3.9.8" />
+        <option name="localRepository" value="D:\Program Files\sdk\maven\repository" />
+        <option name="mavenHomeTypeForPersistence" value="CUSTOM" />
+      </MavenGeneralSettings>
+    </option>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -46,30 +58,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Debug&quot;,
-    &quot;Maven.NiceDoc [package].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/_Work/_MyProgram/NiceDoc/scr/NiceDoc/target&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Debug",
+    "Maven.NiceDoc [package].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/_Work/_MyProgram/NiceDoc/scr/NiceDoc/target",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "MavenSettings",
+    "show.migrate.to.gradle.popup": "false",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\_Work\_MyProgram\NiceDoc\scr\NiceDoc\target\classes\Template" />
@@ -170,7 +182,8 @@
       <workItem from="1725601325536" duration="785000" />
       <workItem from="1727157757629" duration="224000" />
       <workItem from="1728715295102" duration="1592000" />
-      <workItem from="1733815571089" duration="89000" />
+      <workItem from="1733815571089" duration="1022000" />
+      <workItem from="1736825117300" duration="2102000" />
     </task>
     <task id="LOCAL-00001" summary="修正部分bug，添加说明">
       <created>1647846779093</created>
@@ -424,14 +437,6 @@
       <option name="project" value="LOCAL" />
       <updated>1685949896015</updated>
     </task>
-    <task id="LOCAL-00042" summary="修正说明文档">
-      <option name="closed" value="true" />
-      <created>1712557263598</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1712557263598</updated>
-    </task>
     <task id="LOCAL-00043" summary="readme">
       <option name="closed" value="true" />
       <created>1712737149195</created>
@@ -528,7 +533,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728715410293</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="update">
+      <option name="closed" value="true" />
+      <created>1733815675921</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1733815675921</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -594,9 +607,9 @@
     <MESSAGE value="文件后缀获取方法" />
     <MESSAGE value="更新版本1.3.1 新增方法" />
     <MESSAGE value="readme 1.3.1.jar" />
-    <MESSAGE value="update" />
     <MESSAGE value="更新方法" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新方法" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
