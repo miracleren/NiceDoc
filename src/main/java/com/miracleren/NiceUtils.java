@@ -137,6 +137,7 @@ public class NiceUtils {
 
     /**
      * 是否数值
+     *
      * @param str
      * @return
      */
@@ -151,6 +152,21 @@ public class NiceUtils {
             } catch (NumberFormatException e1) {
                 return false;
             }
+        }
+    }
+
+    /**
+     * 是否浮点
+     *
+     * @param str
+     * @return
+     */
+    public static boolean isFloat(String str) {
+        try {
+            Float.parseFloat(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
 
