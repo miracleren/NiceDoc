@@ -182,7 +182,8 @@
       <workItem from="1733815571089" duration="1022000" />
       <workItem from="1736825117300" duration="2102000" />
       <workItem from="1736833109502" duration="218000" />
-      <workItem from="1739153715370" duration="247000" />
+      <workItem from="1739153715370" duration="1115000" />
+      <workItem from="1741768105296" duration="71000" />
     </task>
     <task id="LOCAL-00001" summary="修正部分bug，添加说明">
       <created>1647846779093</created>
@@ -436,14 +437,6 @@
       <option name="project" value="LOCAL" />
       <updated>1685949896015</updated>
     </task>
-    <task id="LOCAL-00044" summary="readme">
-      <option name="closed" value="true" />
-      <created>1714114450099</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1714114450099</updated>
-    </task>
     <task id="LOCAL-00045" summary="添加正则表达式">
       <option name="closed" value="true" />
       <created>1716772933230</created>
@@ -540,7 +533,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736833298192</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="fix">
+      <option name="closed" value="true" />
+      <created>1739153992245</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1739153992246</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -583,7 +584,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="新增日期格式标签填充" />
     <MESSAGE value="优化子表数据无法填充问题" />
     <MESSAGE value="修正v-if分解bug" />
     <MESSAGE value="修复表格越界问题" />
@@ -608,7 +608,8 @@
     <MESSAGE value="更新方法" />
     <MESSAGE value="update" />
     <MESSAGE value="update poi" />
-    <option name="LAST_COMMIT_MESSAGE" value="update poi" />
+    <MESSAGE value="fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

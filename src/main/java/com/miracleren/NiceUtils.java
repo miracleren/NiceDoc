@@ -170,4 +170,22 @@ public class NiceUtils {
         }
     }
 
+/**
+     * 获取两个符号之间的内容
+     *
+     * @param text  源字符串
+     * @param start 开始符号
+     * @param end   结束符号
+     * @return 两个符号之间的内容
+     */
+    public static String getContentBetweenSymbols(String text, String start, String end) {
+        String regex = Pattern.quote(start) + "([\\s\\S]*?)" + Pattern.quote(end);
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(text);
+
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+        return null;
+    }
 }
