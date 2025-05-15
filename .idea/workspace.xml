@@ -7,6 +7,7 @@
     <list default="true" id="90fda1be-659a-4693-8ec5-563e4dea02ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/miracleren/NiceUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/miracleren/NiceUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/miracleren/NiceUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/miracleren/NiceUtils.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,7 +185,9 @@
       <workItem from="1736833109502" duration="218000" />
       <workItem from="1739153715370" duration="1115000" />
       <workItem from="1741768105296" duration="107000" />
-      <workItem from="1744684348002" duration="43000" />
+      <workItem from="1744684348002" duration="359000" />
+      <workItem from="1744684721557" duration="219000" />
+      <workItem from="1747270933714" duration="35000" />
     </task>
     <task id="LOCAL-00001" summary="修正部分bug，添加说明">
       <created>1647846779093</created>
@@ -438,14 +441,6 @@
       <option name="project" value="LOCAL" />
       <updated>1685949896015</updated>
     </task>
-    <task id="LOCAL-00046" summary="添加方法设置excel只读">
-      <option name="closed" value="true" />
-      <created>1716774090321</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1716774090321</updated>
-    </task>
     <task id="LOCAL-00047" summary="清除字符串尾巴方法类">
       <option name="closed" value="true" />
       <created>1716945188958</created>
@@ -542,7 +537,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741768200744</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="update poi 5.4.1">
+      <option name="closed" value="true" />
+      <created>1744684536138</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1744684536138</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -585,7 +588,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="修正v-if分解bug" />
     <MESSAGE value="修复表格越界问题" />
     <MESSAGE value="添加图片标签功能" />
     <MESSAGE value="优化图片标签功能" />
@@ -610,7 +612,8 @@
     <MESSAGE value="update poi" />
     <MESSAGE value="fix" />
     <MESSAGE value="工具类" />
-    <option name="LAST_COMMIT_MESSAGE" value="工具类" />
+    <MESSAGE value="update poi 5.4.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="update poi 5.4.1" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
