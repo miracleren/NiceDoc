@@ -23,7 +23,7 @@ public class NiceDoc {
     //private HWPFDocument doc;
     private XWPFDocument docx;
     private int status = 0;
-    private List<XWPFTable> allTables = new ArrayList<>();
+    private final List<XWPFTable> allTables = new ArrayList<>();
 
     /**
      * 根据路径初始化word模板

@@ -174,5 +174,14 @@ public class NiceUtils {
         }
     }
 
+     /**
+     * 将Date对象转换为时间戳（毫秒数）
+     * @param date Date对象
+     * @return 时间戳（毫秒数）
+     */
+    public static long convertToTimeStamp(Date date) {
+        return date.getTime();
+    }
+
 
 }
