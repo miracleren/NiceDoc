@@ -174,8 +174,9 @@ public class NiceUtils {
         }
     }
 
-     /**
+    /**
      * 将Date对象转换为时间戳（毫秒数）
+     *
      * @param date Date对象
      * @return 时间戳（毫秒数）
      */
@@ -184,4 +185,13 @@ public class NiceUtils {
     }
 
 
+    /**
+     * 将时间戳对象转换为Date（毫秒数）
+     *
+     * @param date Date对象
+     * @return 时间戳（毫秒数）
+     */
+    public static Date convertTimeStampToDate(long date) {
+        return new Date(date);
+    }
 }
